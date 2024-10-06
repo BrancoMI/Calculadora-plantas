@@ -1,0 +1,166 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class pr {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        // Solicitar el nombre del usuario
+        System.out.println("¿Cuál es tu nombre?");
+        String nombre = sc.nextLine();
+
+        // Lista para almacenar el nombre de las plantas, cantidades y precios totales
+        ArrayList<String> plantas = new ArrayList<>();
+        ArrayList<Integer> cantidades = new ArrayList<>();
+        ArrayList<Integer> preciosTotales = new ArrayList<>();
+
+        // Variable fija para el precio de cada planta
+        int precioPorPlanta = 1300;
+
+        String continuar = ""; // Inicializar la variable continuar
+        int totalCompra = 0; // Variable para acumular el total de la compra
+
+        do {
+            // Desplegar el menú de opciones de plantas
+            System.out.println("\nSelecciona el tipo de planta:");
+            System.out.println("1. Acelga");
+            System.out.println("2. Aji");
+            System.out.println("3. Apio");
+            System.out.println("4. Brocoli");
+            System.out.println("5. Cebolla");
+            System.out.println("6. Ciboulett");
+            System.out.println("7. Cilantro");
+            System.out.println("8. Eneldo");
+            System.out.println("9. Hierba Buena");
+            System.out.println("10. Lavanda");
+            System.out.println("11. Lechuga Verde");
+            System.out.println("12. Melisa");
+            System.out.println("13. Menta");
+            System.out.println("14. Orégano");
+            System.out.println("15. Poleo");
+            System.out.println("16. Rabano");
+            System.out.println("17. Repollo");
+            System.out.println("18. Romero");
+            System.out.println("19. Ruda");
+            System.out.println("20. Tomillo");
+            System.out.println("21. Zanahoria");
+            System.out.print("Opción: ");
+            int opcionPlanta = sc.nextInt();
+
+            // Limpiar el buffer del teclado
+            sc.nextLine();
+
+            String planta = "";
+            switch (opcionPlanta) {
+                case 1:
+                    planta = "Acelga";
+                    break;
+                case 2:
+                    planta = "Aji";
+                    break;
+                case 3:
+                    planta = "Apio";
+                    break;
+                case 4:
+                    planta = "Brocoli";
+                    break;
+                case 5:
+                    planta = "Cebolla";
+                    break;
+                case 6:
+                    planta = "Ciboulett";
+                    break;
+                case 7:
+                    planta = "Cilantro";
+                    break;
+                case 8:
+                    planta = "Eneldo";
+                    break;
+                case 9:
+                    planta = "Hierba Buena";
+                    break;
+                case 10:
+                    planta = "Lavanda";
+                    break;
+                case 11:
+                    planta = "Lechuga Verde";
+                    break;
+                case 12:
+                    planta = "Melisa";
+                    break;
+                case 13:
+                    planta = "Menta";
+                    break;
+                case 14:
+                    planta = "Orégano";
+                    break;
+                case 15:
+                    planta = "Poleo";
+                    break;
+                case 16:
+                    planta = "Rabano";
+                    break;
+                case 17:
+                    planta = "Repollo";
+                    break;
+                case 18:
+                    planta = "Romero";
+                    break;
+                case 19:
+                    planta = "Ruda";
+                    break;
+                case 20:
+                    planta = "Tomillo";
+                    break;
+                case 21:
+                    planta = "Zanahoria";
+                    break;
+
+                default:
+                    System.out.println("Opción no válida. Inténtalo de nuevo.");
+                    continue;
+            }
+
+            // Solicitar la cantidad de plantas
+            System.out.println("¿Cuántas " + planta + " deseas agregar?");
+            int cantidad = sc.nextInt();
+
+            // Limpiar el buffer del teclado nuevamente
+            sc.nextLine();
+
+            // Verificar si la planta ya ha sido seleccionada
+            if (plantas.contains(planta)) {
+                // Si la planta ya está en la lista, sumar la nueva cantidad
+                int indice = plantas.indexOf(planta);
+                cantidades.set(indice, cantidades.get(indice) + cantidad);
+                preciosTotales.set(indice, cantidades.get(indice) * precioPorPlanta);
+            } else {
+                // Si la planta no está en la lista, agregarla como nueva
+                plantas.add(planta);
+                cantidades.add(cantidad);
+                preciosTotales.add(cantidad * precioPorPlanta);
+            }
+
+            // Acumular el total de la compra
+            totalCompra += cantidad * precioPorPlanta;
+
+            // Mostrar el precio total para esa planta
+            System.out.println("El precio total para " + cantidad + " " + planta + "(s) es: " + (cantidad * precioPorPlanta) + " pesos.");
+
+            // Preguntar si desea agregar otra planta
+            System.out.println("¿Deseas agregar otra planta o cantidad? (sí/no)");
+            continuar = sc.nextLine();
+
+        } while (continuar.equalsIgnoreCase("si"));
+
+        // Mostrar el resumen final de todas las plantas y sus precios
+        System.out.println("\nResumen de compras de " + nombre + ":");
+        for (int i = 0; i < plantas.size(); i++) {
+            System.out.println(plantas.get(i) + ": " + cantidades.get(i) + " unidades - Precio total: " + preciosTotales.get(i) + " pesos.");
+        }
+
+        // Mostrar el total de la compra
+        System.out.println("Total de toda la compra: " + totalCompra + " pesos.");
+        System.out.println("Gracias por usar la calculadora de tulipanes, " + nombre + ".");
+    }
+}
